@@ -1,0 +1,16 @@
+{% extends './base/base.html' %}
+
+{% block content %}
+<div class="register-container">
+    <h1 class="text-center">Register</h1>
+    {% load crispy_forms_tags %}
+    <form class="register-form" action="" method="POST">
+        {% csrf_token %}
+        {{ form | crispy }}
+        <input type="submit" value="Register" class="btn btn-warning">
+    </form>
+
+    {% if form.errors %}
+    {% endif %}
+</div>
+{% endblock %}

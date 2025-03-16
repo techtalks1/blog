@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>403 Forbidden</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            padding: 50px;
+        }
+        h1 {
+            font-size: 50px;
+            color: red;
+        }
+        p {
+            font-size: 20px;
+        }
+        .back-home {
+            margin-top: 20px;
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #ff5722;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1><i class="fas fa-exclamation-triangle"></i> 403 Forbidden</h1>
+    <p>You do not have permission to access this page.</p>
+    <a href="{% url 'home' %}" class="back-home">Go Back to Home</a>
+</body>
+</html>

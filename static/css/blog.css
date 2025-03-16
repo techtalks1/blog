@@ -1,0 +1,215 @@
+/* stylelint-disable selector-list-comma-newline-after */
+
+/* Ensure full height of the page */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Wrapper to ensure footer is pushed to bottom */
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Ensures full viewport height */
+  width: 100%; /* Ensures wrapper spans the full screen */
+}
+
+/* Expands to fill remaining space and push footer down */
+.content-wrapper {
+  flex: 1;
+  min-height: 20vh; /* Ensure it takes most of the viewport height */
+  padding-bottom: 0px; /* Extra space for better spacing */
+}
+
+/* Footer sticks to the bottom */
+.blog-footer {
+  background-color: #f9f9f9;
+  text-align: center;
+  padding: 20px 0;
+  
+  width: 100% ; /* Prevent restrictions */
+  position: relative ;
+  bottom: 0;        /* Stick to bottom */
+  left: 0 ;
+  right: 0 ;
+  border-top: 1px solid #e5e5e5;
+  margin-top: auto !important; /* Ensures footer is always at the bottom */
+}
+
+.container.mt-5 {
+  margin-bottom: 10px; /* Add space between About and Footer */
+}
+
+/* Make all blog post titles dark and remove underline */
+h3 a, h1 a, h2 a {
+    color:  #212529!important; /* Dark gray/black color */
+    text-decoration: none !important; /* Remove underline */
+    font-weight: bold; /* Make it bold for emphasis */
+    transition: color 0.3s ease-in-out; /* Smooth transition effect */
+}
+
+/* Hover effect: Change color slightly to a lighter dark shade */
+h3 a:hover, h1 a:hover, h2 a:hover {
+    color: #000000 !important; /* Slightly lighter dark */
+}
+
+/* General blog post title styles */
+.blog-title a {
+  color: #FFC107 !important; /* Default bright yellow */
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+  text-decoration: none !important;
+  font-weight: bold;
+  transition: color 0.3s ease-in-out;
+}
+
+/* Hover effect: Change to darker yellow */
+.blog-title a:hover {
+  color: #D39E00 !important; /* Darker yellow */
+}
+/* Style the navigation links */
+/* Apply Playfair Display font to navigation links */
+.nav-scroller .nav a {
+    font-family: Arial, sans-serif; /* Default font */
+    font-weight: normal;
+    font-size: 16px;
+    color: #000 !important;
+    text-decoration: none;
+    position: relative;
+    transition: color 0.3s ease-in-out; /* Smooth color transition */
+}
+
+.nav-scroller .nav a:hover {
+    color: #FFC107 !important; /* Yellow color on hover */
+}
+
+/* Underline effect on hover */
+.nav-scroller .nav a::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -2px;
+    width: 0;
+    height: 2px;
+    background-color: #FFC107;
+    transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
+}
+
+.nav-scroller .nav a:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+/* it adds Responsiveness in Login form */
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 50vh; /* Centers it vertically */
+}
+
+/* Styling the login form */
+.login-form {
+  width: 90%;/* Makes the form responsive, taking 90% of the screen width */
+  max-width: 500px;
+  padding: 20px;
+  background: white;
+  border-radius: 10px;/* Rounds the corners for a smoother look */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* it adds Responsiveness in the register form */
+.register-container {
+  display: flex; /* Enables flexbox */
+  flex-direction: column; /* Stacks elements vertically */
+  align-items: center; /* Centers content horizontally */
+  justify-content: center; /* Centers content vertically */
+  height: 95vh; /* Makes the container fill the full viewport height */
+}
+
+/* Styling the register form */
+.register-form {
+  width: 90%; /* Makes it responsive on small screens */
+  max-width: 500px; /* Prevents it from becoming too wide on larger screens */
+  padding: 20px; /* Adds some space inside the form */
+  background: white; /* Sets background color */
+  border-radius: 10px; /* Rounds the corners */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Adds a soft shadow effect */
+}
+
+
+
+
+
+
+
+
+.blog-header {
+    border-bottom: 1px solid #e5e5e5;
+  }
+  
+  .blog-header-logo {
+    font-family: "Playfair Display", Georgia, "Times New Roman", serif/*rtl:Amiri, Georgia, "Times New Roman", serif*/;
+    font-size: 2.25rem;
+  }
+  
+  .blog-header-logo:hover {
+    text-decoration: none;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Playfair Display", Georgia, "Times New Roman", serif/*rtl:Amiri, Georgia, "Times New Roman", serif*/;
+  }
+  
+  .display-4 {
+    font-size: 2.5rem;
+  }
+  @media (min-width: 768px) {
+    .display-4 {
+      font-size: 3rem;
+    }
+  }
+  
+  .flex-auto {
+    flex: 0 0 auto;
+  }
+  
+  .h-250 { height: 250px; }
+  @media (min-width: 768px) {
+    .h-md-250 { height: 250px; }
+  }
+  
+  /* Pagination */
+  .blog-pagination {
+    margin-bottom: 4rem;
+  }
+  
+  /*
+   * Blog posts
+   */
+  .blog-post {
+    margin-bottom: 4rem;
+  }
+  .blog-post-title {
+    font-size: 2.5rem;
+  }
+  .blog-post-meta {
+    margin-bottom: 1.25rem;
+    color: #727272;
+  }
+  
+  /*
+   * Footer
+   */
+  /* .blog-footer {
+    padding: 2.5rem 0;
+    color: #727272;
+    text-align: center;
+    background-color: #f9f9f9;
+    border-top: .05rem solid #e5e5e5;
+  } */
+  .blog-footer p:last-child {
+    margin-bottom: 0;
+  }
+  

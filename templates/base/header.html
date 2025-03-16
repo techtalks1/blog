@@ -1,0 +1,193 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Django Blogs</title>
+    <link href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
+    <link href="{% static 'css/blog.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  </head>
+<body>
+    <div class="container">
+      <header class="blog-header py-3">
+    <div class="row flex-nowrap justify-content-between align-items-center">
+        <!-- Logo (Remains the same) -->
+        <div class="col-4 pt-1">
+            <a class="blog-header-logo text-dark" href="/">Tech Talks</a>
+        </div>
+
+        <!-- Search Bar & Button -->
+        <div class="col-4 search-container">
+            <form action="{% url 'search' %}" method="GET" class="search-form">
+                <div class="d-flex gap-2">
+                    <input class="form-control search-input" name="keyword" type="text" placeholder="Enter search term..." />
+                    <button type="submit" class="btn btn-warning search-button">Search</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Dashboard & Logout -->
+        <div class="col-4 d-flex justify-content-end align-items-center action-buttons">
+            {% if user.is_authenticated %}
+                <div class="buttons-group">
+                    {% if user.is_staff or user.is_superuser %}
+                        <a href="{% url 'dashboard' %}" class="btn btn-warning">Dashboard</a>
+                    {% endif %}
+                    <a href="{% url 'logout' %}" class="btn btn-danger text-white">Logout</a>
+                </div>
+            {% else %}
+                <a class="btn btn-sm btn-warning" href="{% url 'login' %}">Login</a> 
+                <a class="btn btn-sm btn-outline-secondary" href="{% url 'register' %}">Register</a>
+            {% endif %}
+        </div>
+    </div>
+</header>
+
+<!-- **CSS: Adjustments Only for Mobile Screens** -->
+<style>
+
+/* Default spacing for web view */
+/* Fix search bar and button spacing only for web view */
+@media (min-width: 769px) {
+    .search-form .d-flex {
+        gap: 10px; /* Ensures same space between input and button */
+    }
+
+    .search-input {
+        width: 100%;
+        max-width: 300px; /* Set a consistent size */
+    }
+
+    .search-button {
+        min-width: 100px; /* Match button size with others */
+        height: 40px; /* Ensure height consistency */
+    }
+}
+
+.action-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* Align buttons to the right */
+    gap: 10px; /* Adds minimal spacing between buttons */
+}
+
+.buttons-group {
+    display: flex;
+    gap: 10px; /* Space between buttons */
+}
+
+.buttons-group a {
+    padding: 8px 12px; /* Adjust button size */
+    font-size: 14px;
+    min-width: 100px; /* Ensures a consistent button width */
+    height: 40px; /* Consistent height */
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Styling for specific buttons */
+.btn-warning, 
+.btn-danger, 
+.btn-outline-secondary {
+    min-width: 100px; /* Match width of Login/Register */
+    height: 40px; /* Match height of Login/Register */
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* For Mobile Screens */
+@media (max-width: 768px) {
+    .search-container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .search-form {
+        width: 100%;
+        max-width: 350px;
+    }
+
+    .search-form .d-flex {
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .search-input {
+        width: 120%;
+        max-width: 350px;
+        padding: 8px;
+    }
+
+    .search-button {
+        width: 100%;
+        max-width: 80px;
+        padding: 5px;
+    }
+
+    .action-buttons {
+        order: 2;
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 5px;
+        gap: 6px; /* Ensures minimal spacing between buttons */
+    }
+
+    .buttons-group {
+        display: flex;
+        flex-direction: column;
+        width: 80%;
+        max-width: 200px;
+        gap: 6px; /* Adds consistent spacing in mobile */
+        align-items: center; /* Center buttons */
+    }
+
+    /* Manage Dashboard & Logout btn for mobile screen */
+    .buttons-group a {
+        width: 100%;
+        max-width: 100px; /* Same width as Login/Register */
+        /* height: 40px; Match Login/Register button height */
+        text-align: center;
+        padding: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .btn-warning, 
+    .btn-danger, 
+    .btn-outline-secondary {
+        width: 100%;
+        max-width: 100px; /* Match Login/Register width */
+        
+        text-align: center;
+        padding: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+</style>
+
+    
+    
+
+      <div class="nav-scroller py-1 mb-2">
+        <nav class="nav d-flex justify-content-between">
+          {% for cat in categories %}
+          <a class="p-2 nav-link" href="{% url 'posts_by_category' cat.id %}">{{ cat.category_name }}</a>
+          {% endfor %}
+        </nav>
+      </div>

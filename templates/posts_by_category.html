@@ -1,0 +1,40 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+    
+  <!-- Recent articals -->
+  <h3 class="text-uppercase text-warning" style="letter-spacing: 2px;">Category - {{ category }}</h3>
+  <main role="main" class="container p-0">
+    <div class="row">
+      <div class="col-md-8 blog-main">
+        {% for post in posts %}
+        <div class="card border-0" >
+          <div class="card-body">
+            <h3><a href="{% url 'blogs' post.slug %}">{{ post.title }}</a></h3>
+            <small class="mb-1 text-muted">{{ post.created_at | timesince}} ago | {{ post.author }}</small>
+            <p class="card-text">{{ post.short_description | truncatewords:20 }}</p>
+          </div>
+        </div>
+        {% endfor %}    
+      </div>
+      <!-- /.blog-main -->
+
+      <div class="card mb-4 p-3 rounded" style="width: 300px; float: right; margin-left: 40px; padding: 20px; background-color: #f5f5f5; border: 1px solid #ddd; padding: 20px; box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.05);">
+        <h4 class="font-italic">Follow Us</h4>
+        <ol class="list-unstyled">
+            <li><a href="#">GitHub</a></li>
+            <li><a href="#">LinkedIn</a></li>
+            <li><a href="#">X</a></li>
+            <li><a href="#">Facebook</a></li>
+            <li><a href="#">Instagram</a></li>
+        </ol>
+    </div>
+    
+      <!-- /.blog-sidebar -->
+
+    </div><!-- /.row -->
+
+  </main><!-- /.container -->
+
+</div>
+{% endblock %}

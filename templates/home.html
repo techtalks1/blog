@@ -1,0 +1,195 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+{% for post in featured_post %}   
+  {% if forloop.first %}
+<div class="jumbotron p-3 p-md-5 text-white rounded bg-dark" style="background-image: url('{{ post.blog_image.url }}'); background-blend-mode: overlay ;background-size: cover; background-position: center; background-repeat: no-repeat; height: 350px; /* Increase this value to enlarge the frame */
+           display: flex; 
+           align-items: center; ">
+    <div class="col-md-8 px-0">
+      <h1 class="display-4 font-italic blog-title" style="color: white; font-weight: bold; letter-spacing: 1px;"><a href="{% url 'blogs' post.slug %}" 
+        style="color: #FFC107 !important; 
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.8); 
+        text-decoration: none; 
+        transition: color 0.3s ease;"
+        onmouseover="this.style.color='#D39E00'" 
+        onmouseout="this.style.color='#FFC107'">
+        {{ post.title }}</a></h1>
+      <p class="lead my-3">{{ post.short_description | truncatewords:20 }}</p>
+      <p class="lead mb-0"><a href="{% url 'blogs' post.slug %}" class="text-white font-weight-bold">Continue reading...</a></p>
+    </div>
+  </div>
+  {% endif %}
+{% endfor %}
+
+<!-- Featured post -->
+<h3 class="text-uppercase text-warning" style="letter-spacing: 2px;">Featured Post</h3>
+  <div class="row mb-2">
+    {% for post in featured_post %}
+      {% if not forloop.first %}
+    <div class="col-md-6">
+      <div class="card border-0" >
+        <div class="card-body">
+          <h3><a href="{% url 'blogs' post.slug %}" style="color: black; font-weight: bold; text-decoration: none;">{{ post.title }}</a></h3>
+          <small class="mb-1 text-muted">{{ post.created_at | timesince}} ago | {{ post.author }}</small>
+          <p class="card-text">{{ post.short_description | truncatewords:20}}</p>
+        </div>
+      </div> 
+    </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+
+  <!-- Recent articals -->
+  <h3 class="text-uppercase text-warning" style="letter-spacing: 2px;">Recent articals</h3>
+  <main role="main" class="container p-0">
+    <div class="row">
+      <div class="col-md-8 blog-main">
+        {% for post in posts %}
+        <div class="card border-0" >
+          <div class="card-body">
+            <h3><a href="{% url 'blog_detail' post.slug %}">{{ post.title }}</a></h3>
+            <small class="mb-1 text-muted">{{ post.created_at | timesince}} ago | {{ post.author }}</small>
+            <p class="card-text">{{ post.short_description | truncatewords:20 }}</p>
+          </div>
+        </div>
+        {% endfor %}    
+      </div>
+      <!-- /.blog-main -->
+
+      <!-- About Tech Talks Section -->
+<div class="container mt-5">
+  <div class="about-section">
+    <!-- Dark Overlay with Blur -->
+    <div class="overlay"></div>
+
+    <!-- Content -->
+    <div class="content">
+      <h4 class="fw-bold text-warning"> 
+        <span style="text-transform: uppercase;">About</span> Tech Talks
+      </h4>
+
+      <p>
+        Welcome to <strong>Tech Talks</strong> – your go-to destination for insightful discussions 
+        on emerging technologies, innovation, and trending topics from across industries.
+      </p>
+      <p>
+        Whether it's AI, Quantum Computing, Cybersecurity, HealthTech, 
+        or Social Media trends, we provide well-researched content.
+      </p>
+      <p>
+        Our mission is to simplify complex ideas, deliver up-to-date tech insights, 
+        and spark conversations that matter. Whether you're a tech enthusiast, an industry professional, 
+        or just curious about the latest trends, we aim to keep you informed and inspired.
+      </p>
+      <p class="fw-bold">
+        Join us as we explore the cutting-edge advancements shaping our future!
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- CSS -->
+<style>
+.about-section {
+  position: relative;
+  background: url('static/images/about2.jpg') center/cover no-repeat;
+  width: 90%;
+  max-width: 100%;
+  margin: auto;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+  overflow: hidden; /* Ensures blur effect stays within bounds */
+}
+
+.about-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(6px);
+  border-radius: 10px;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  width: 85%;
+  margin: auto;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Fixes */
+@media screen and (max-width: 768px) {
+  .about-section {
+    width: 95%;
+    padding: 15px;
+  }
+  .content {
+    width: 95%;
+  }
+}
+</style>
+
+
+    
+    <!-- Follow us -->
+      <div class="p-3 text-warning">
+        <h4 class=" text-uppercase" style=" letter-spacing: 1px;">Follow Us</h4>
+        <div style="margin-top: 10px;">
+            <a href="https://github.com/yourprofile" target="_blank" 
+               style="display: inline-block; margin: 0 10px; font-size: 24px; color: #727272; text-decoration: none; transition: color 0.3s ease-in-out;"
+               onmouseover="this.style.color='#000000'" onmouseout="this.style.color='#727272'">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="https://linkedin.com/in/yourprofile" target="_blank" 
+               style="display: inline-block; margin: 0 10px; font-size: 24px; color: #727272; text-decoration: none; transition: color 0.3s ease-in-out;"
+               onmouseover="this.style.color='#0077B5'" onmouseout="this.style.color='#727272'">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="https://twitter.com/yourhandle" target="_blank" 
+              style="display: inline-block; margin: 0 10px; font-size: 24px; color: #727272; text-decoration: none; transition: color 0.3s ease-in-out;"
+              onmouseover="this.style.color='#000000'" onmouseout="this.style.color='#727272'">
+                <i class="fa-brands fa-x-twitter"></i>
+            </a>
+
+            <a href="https://facebook.com/" target="_blank" 
+               style="display: inline-block; margin: 0 10px; font-size: 24px; color: #727272; text-decoration: none; transition: color 0.3s ease-in-out;"
+               onmouseover="this.style.color='#1877F2'" onmouseout="this.style.color='#727272'">
+                <i class="fab fa-facebook"></i>
+            </a>
+            <a href="https://instagram.com/" target="_blank" 
+               style="display: inline-block; margin: 0 10px; font-size: 24px; color: #727272; text-decoration: none; transition: color 0.3s ease-in-out;"
+               onmouseover="this.style.color='#d62976'" onmouseout="this.style.color='#727272'">
+                <i class="fab fa-instagram"></i>
+            </a>
+        </div>
+      </div>
+    
+      </div>
+      <!-- /.blog-sidebar -->
+
+    </div><!-- /.row -->
+
+  </main><!-- /.container -->
+</div>
+{% endblock %}

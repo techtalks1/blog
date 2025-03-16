@@ -1,0 +1,56 @@
+{% extends '../base/base.html' %}
+
+
+
+{% block content %}
+
+<div class="row">
+
+    <!-- left sidebar -->
+    <!-- load left sidebar -->
+    {% include './left_sidebar.html' %}
+
+    <!-- right sidebar -->
+     <div class="col-md-9">
+      <h3>All Categories</h3>
+      {% if user.is_staff or user.is_superuser %}
+      <a href="{% url 'add_categories' %}" class="btn btn-dark text-light float-right mb-2">Add New Category</a>
+      {% endif %}  
+        <table class="table table-hover">
+    <thead>
+        <tr class="text-center">  <!-- Centering table headers -->
+            <th>Id</th>
+            <th>Category Name</th>
+            <th>Created At</th>
+            <th>Updated At</th>
+            {% if user.is_staff or user.is_superuser %}
+                <th>Action</th>
+            {% endif %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for cat in categories %}  
+            <tr class="text-center">  <!-- Centering table data -->
+                <th>{{ forloop.counter }}</th>
+                <td>{{ cat.category_name }}</td>
+                <td>{{ cat.created_at }}</td>
+                <td>{{ cat.updated_at }}</td>
+                {% if user.is_staff or user.is_superuser %}
+                    <td>
+                        <a href="{% url 'edit_categories' cat.id %}"> 
+                            <i class="fa fa-edit text-success"></i>
+                        </a> &nbsp;&nbsp;
+                        <a href="{% url 'delete_categories' cat.id %}">
+                            <i class="fa fa-trash text-danger"></i>
+                        </a>
+                    </td>
+                {% endif %}
+            </tr>
+        {% endfor %}  
+    </tbody>
+</table>
+
+     </div>
+</div>  
+
+{% endblock %}
